@@ -7,6 +7,6 @@ initial begin
 		$display("test is not defined");
 	`endif
 
-	end
+end
 
 endmodule
