@@ -1,3 +1,5 @@
+`define TEST
+
 module macro_test;
 
 initial begin
