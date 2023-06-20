@@ -7,9 +7,9 @@
 :vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
 :vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
 :vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
-S_0x55b29b6bc760 .scope module, "macro_test" "macro_test" 2 1;
+S_0x55942601a760 .scope module, "macro_test" "macro_test" 2 1;
  .timescale 0 0;
-    .scope S_0x55b29b6bc760;
+    .scope S_0x55942601a760;
 T_0 ;
     %vpi_call 2 7 "$display", "test is not defined" {0 0 0};
     %end;
