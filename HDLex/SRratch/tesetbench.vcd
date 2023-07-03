@@ -1,0 +1,45 @@
+$date
+	Mon Jul  3 15:52:40 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module Top $end
+$var wire 1 ! qbar $end
+$var wire 1 " q $end
+$var reg 1 # reset $end
+$var reg 1 $ set $end
+$scope module m1 $end
+$var wire 1 " Q $end
+$var wire 1 ! Qbar $end
+$var wire 1 % Rbar $end
+$var wire 1 & Sbar $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+1&
+1%
+0$
+0#
+x"
+x!
+$end
+#5
+0"
+1!
+0%
+1#
+#10
+1%
+0#
+#15
+0!
+1"
+0&
+1$
+#115

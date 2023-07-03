@@ -1,0 +1,60 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x5575d5b6a220 .scope module, "Top" "Top" 2 10;
+ .timescale 0 0;
+L_0x5575d5b7cd50 .functor NOT 1, v0x5575d5b7cb10_0, C4<0>, C4<0>, C4<0>;
+L_0x5575d5b7ce10 .functor NOT 1, v0x5575d5b7ca40_0, C4<0>, C4<0>, C4<0>;
+v0x5575d5b7c8b0_0 .net "q", 0 0, L_0x5575d5b7cbb0;  1 drivers
+v0x5575d5b7c970_0 .net "qbar", 0 0, L_0x5575d5b7ccc0;  1 drivers
+v0x5575d5b7ca40_0 .var "reset", 0 0;
+v0x5575d5b7cb10_0 .var "set", 0 0;
+S_0x5575d5b6a3b0 .scope module, "m1" "SR_latch" 2 15, 2 1 0, S_0x5575d5b6a220;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "Q";
+    .port_info 1 /OUTPUT 1 "Qbar";
+    .port_info 2 /INPUT 1 "Sbar";
+    .port_info 3 /INPUT 1 "Rbar";
+L_0x5575d5b7cbb0 .functor NAND 1, L_0x5575d5b7cd50, L_0x5575d5b7ccc0, C4<1>, C4<1>;
+L_0x5575d5b7ccc0 .functor NAND 1, L_0x5575d5b7ce10, L_0x5575d5b7cbb0, C4<1>, C4<1>;
+v0x5575d5b30cf0_0 .net "Q", 0 0, L_0x5575d5b7cbb0;  alias, 1 drivers
+v0x5575d5b7c610_0 .net "Qbar", 0 0, L_0x5575d5b7ccc0;  alias, 1 drivers
+v0x5575d5b7c6d0_0 .net "Rbar", 0 0, L_0x5575d5b7ce10;  1 drivers
+v0x5575d5b7c770_0 .net "Sbar", 0 0, L_0x5575d5b7cd50;  1 drivers
+    .scope S_0x5575d5b6a220;
+T_0 ;
+    %vpi_call 2 18 "$monitor", $time, "set = %b, reset= %b, q= %b\012", v0x5575d5b7cb10_0, v0x5575d5b7ca40_0, v0x5575d5b7c8b0_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5575d5b7cb10_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5575d5b7ca40_0, 0, 1;
+    %delay 5, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5575d5b7ca40_0, 0, 1;
+    %delay 5, 0;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5575d5b7ca40_0, 0, 1;
+    %delay 5, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5575d5b7cb10_0, 0, 1;
+    %delay 100, 0;
+    %vpi_call 2 23 "$finish" {0 0 0};
+    %end;
+    .thread T_0;
+    .scope S_0x5575d5b6a220;
+T_1 ;
+    %vpi_call 2 26 "$dumpfile", "tesetbench.vcd" {0 0 0};
+    %vpi_call 2 27 "$dumpvars" {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "SRratch.v";
