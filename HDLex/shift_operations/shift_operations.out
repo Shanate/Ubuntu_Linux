@@ -1,0 +1,53 @@
+#! /usr/bin/vvp
+:ivl_version "11.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+S_0x555eb59e2d90 .scope module, "shift_operations" "shift_operations" 2 1;
+ .timescale 0 0;
+v0x555eb59e2f20_0 .net *"_ivl_12", 2 0, L_0x555eb5a2fdb0;  1 drivers
+L_0x7f7a0ebd8060 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x555eb5a2ef00_0 .net *"_ivl_14", 0 0, L_0x7f7a0ebd8060;  1 drivers
+v0x555eb5a2efe0_0 .net *"_ivl_18", 2 0, L_0x555eb5a30030;  1 drivers
+v0x555eb5a2f0a0_0 .net *"_ivl_2", 2 0, L_0x555eb5a2f9b0;  1 drivers
+L_0x7f7a0ebd80a8 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x555eb5a2f180_0 .net *"_ivl_20", 0 0, L_0x7f7a0ebd80a8;  1 drivers
+L_0x7f7a0ebd8018 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x555eb5a2f2b0_0 .net *"_ivl_4", 0 0, L_0x7f7a0ebd8018;  1 drivers
+v0x555eb5a2f390_0 .net *"_ivl_8", 2 0, L_0x555eb5a2fba0;  1 drivers
+v0x555eb5a2f470_0 .var/s "a", 3 0;
+v0x555eb5a2f550_0 .var "b", 3 0;
+v0x555eb5a2f630_0 .net/s "shifted_a0", 3 0, L_0x555eb5a2fa80;  1 drivers
+v0x555eb5a2f710_0 .net/s "shifted_a1", 3 0, L_0x555eb5a2fc90;  1 drivers
+v0x555eb5a2f7f0_0 .net "shifted_b0", 3 0, L_0x555eb5a2fe80;  1 drivers
+v0x555eb5a2f8d0_0 .net "shifted_b1", 3 0, L_0x555eb5a30120;  1 drivers
+L_0x555eb5a2f9b0 .part v0x555eb5a2f470_0, 1, 3;
+L_0x555eb5a2fa80 .concat [ 3 1 0 0], L_0x555eb5a2f9b0, L_0x7f7a0ebd8018;
+L_0x555eb5a2fba0 .part v0x555eb5a2f470_0, 1, 3;
+L_0x555eb5a2fc90 .extend/s 4, L_0x555eb5a2fba0;
+L_0x555eb5a2fdb0 .part v0x555eb5a2f550_0, 1, 3;
+L_0x555eb5a2fe80 .concat [ 3 1 0 0], L_0x555eb5a2fdb0, L_0x7f7a0ebd8060;
+L_0x555eb5a30030 .part v0x555eb5a2f550_0, 1, 3;
+L_0x555eb5a30120 .concat [ 3 1 0 0], L_0x555eb5a30030, L_0x7f7a0ebd80a8;
+    .scope S_0x555eb59e2d90;
+T_0 ;
+    %pushi/vec4 9, 0, 4;
+    %store/vec4 v0x555eb5a2f470_0, 0, 4;
+    %pushi/vec4 6, 0, 4;
+    %store/vec4 v0x555eb5a2f550_0, 0, 4;
+    %delay 0, 0;
+    %vpi_call 2 25 "$display", "shifted_a0\011=\011%d", v0x555eb5a2f630_0 {0 0 0};
+    %vpi_call 2 26 "$display", "shifted_a1\011=\011%d", v0x555eb5a2f710_0 {0 0 0};
+    %vpi_call 2 27 "$display", "shifted_b0\011=\011%d", v0x555eb5a2f7f0_0 {0 0 0};
+    %vpi_call 2 28 "$display", "shifted_b1\011=\011%d", v0x555eb5a2f8d0_0 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "shift_operations.v";
