@@ -1,0 +1,94 @@
+$date
+	Wed Jul  5 13:11:06 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module TB $end
+$var wire 1 ! Data_Carry $end
+$var wire 1 " Data_Sum $end
+$var reg 1 # A $end
+$var reg 1 $ B $end
+$var reg 1 % C $end
+$scope module u0 $end
+$var wire 1 # A $end
+$var wire 1 $ B $end
+$var wire 1 ! C $end
+$var wire 1 % Cin $end
+$var wire 1 & Data_Carry $end
+$var wire 1 ' Data_Sum $end
+$var wire 1 " S $end
+$var wire 1 ( S2 $end
+$var wire 1 ) S1 $end
+$var wire 1 * C2 $end
+$var wire 1 + C1 $end
+$scope module ha1 $end
+$var wire 1 # A $end
+$var wire 1 $ B $end
+$var wire 1 + C $end
+$var wire 1 ) S $end
+$upscope $end
+$scope module ha2 $end
+$var wire 1 % A $end
+$var wire 1 ) B $end
+$var wire 1 * C $end
+$var wire 1 ( S $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0+
+0*
+1)
+0(
+0'
+0&
+0%
+0$
+0#
+z"
+z!
+$end
+#10
+1&
+1*
+1%
+#20
+1'
+1(
+0&
+0)
+0*
+0%
+1$
+#30
+0'
+0(
+1%
+#40
+1'
+1(
+0%
+0$
+1#
+#50
+0'
+0(
+1%
+#60
+1'
+1(
+1&
+1+
+0%
+1$
+#70
+0'
+0(
+1%
+#100
