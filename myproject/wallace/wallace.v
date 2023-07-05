@@ -1,15 +1,4 @@
-/*module wallace(
 
-input	wire	[3:0]	A, B, // Input Data
-output	wire	[7:0]	prod;
-
-);
-
-	wire	[11:0]	s,c;
-
-endmodule
-//////////////////////////////////////
-*/
 module ha( //Half Adder
 
 input	A, B, // Input Data
@@ -17,7 +6,7 @@ output	S, C //S is Sum, C is Carry
 );
 
 assign	C = A & B; // AND operation
-assign	S = ~(A | B); // XOR operation
+assign	S = A ^ B; // XOR operation
 
 endmodule
 
@@ -32,7 +21,7 @@ output	S, C
 
 
 	wire	S1,S2,C1,C2;
-	wire	Data_Sum, Data_Carry;
+	wire	S, C;
 // instantiation
 ha	ha1(
 	.A(A),
@@ -46,8 +35,8 @@ ha	ha2(
 	.C(C2));
 
 
-assign	Data_Sum = S2;
-assign	Data_Carry = C1 | C2;
+assign	S = S2;
+assign	C = C1 | C2;
 
 endmodule
 
@@ -55,33 +44,34 @@ endmodule
 ///////////////////////////////////
 module TB;
 
-reg	A,B,C;
-wire	Data_Sum, Data_Carry;
+reg	A,B,Cin;
+wire	S,C;
 
 fa	u0(
 	.A(A), 
 	.B(B), 
-	.Cin(C), 
-	.S(Data_Sum), 
-	.C(Data_Carry));
+	.Cin(Cin), 
+	.S(S), 
+	.C(C));
 
 
 initial begin
 
 
-	A = 0; B = 0; C = 0; #10;
-	A = 0; B = 0; C = 1; #10;
-	A = 0; B = 1; C = 0; #10;
-	A = 0; B = 1; C = 1; #10;
-	A = 1; B = 0; C = 0; #10;
-	A = 1; B = 0; C = 1; #10;
-	A = 1; B = 1; C = 0; #10;
-	A = 1; B = 1; C = 1; #10;
+	A = 0; B = 0; Cin = 0; #10;
+	A = 0; B = 0; Cin = 1; #10;
+	A = 0; B = 1; Cin = 0; #10;
+	A = 0; B = 1; Cin = 1; #10;
+	A = 1; B = 0; Cin = 0; #10;
+	A = 1; B = 0; Cin = 1; #10;
+	A = 1; B = 1; Cin = 0; #10;
+	A = 1; B = 1; Cin = 1; #10;
 end
 
 initial	begin
+$display("A	|	B	|	Cin	|	S	|	C");
 $monitor("%b	|	%b	|	%b	|	%b	|	%b",
-	A,B,C,Data_Sum,Data_Carry);
+	A,B,Cin,S,C);
 end
 
 initial begin
