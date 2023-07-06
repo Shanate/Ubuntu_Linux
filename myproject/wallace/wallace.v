@@ -21,7 +21,7 @@ output	S, C
 
 
 	wire	S1,S2,C1,C2;
-	wire	S, C;
+//	wire	S, C;
 // instantiation
 ha	ha1(
 	.A(A),
