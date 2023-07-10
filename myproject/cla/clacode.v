@@ -30,8 +30,8 @@ module Carry_Look_Ahead_8bit(
 	wire	[7:0]	C;
 	wire	[7:0]	P, G;
 
-assign	P = A ^ B; // Propagate fomula
-assign	G = A & B; // Generate fomula
+assign	P = A ^ B; // Propagate formula
+assign	G = A & B; // Generate formula
 
 
 //C(i+1) = G(i) + P(i)C(i)
