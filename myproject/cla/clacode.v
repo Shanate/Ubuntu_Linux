@@ -1,66 +1,102 @@
-///////////////////////////////////////////////////////////
-//16-bit Carry Look Ahead Adder 
-///////////////////////////////////////////////////////////
+//64 bit Carry Look Ahead Project 
+module Carry_Look_Ahead_64bit(
+	input	[63:0]	A, B,
+	input		Cin,
+	output	[63:0]	S,
+	output		Cout
+);
+	wire	[7:1]	C;
 
-`timescale 1ns / 1ps
-module carry_look_ahead_16bit(a,b, cin, sum,cout);
-input [15:0] a,b;
-input cin;
-output [15:0] sum;
-output cout;
-wire c1,c2,c3;
-
-carry_look_ahead_4bit cla1 (.a(a[3:0]), .b(b[3:0]), .cin(cin), .sum(sum[3:0]), .cout(c1));
-carry_look_ahead_4bit cla2 (.a(a[7:4]), .b(b[7:4]), .cin(c1), .sum(sum[7:4]), .cout(c2));
-carry_look_ahead_4bit cla3(.a(a[11:8]), .b(b[11:8]), .cin(c2), .sum(sum[11:8]), .cout(c3));
-carry_look_ahead_4bit cla4(.a(a[15:12]), .b(b[15:12]), .cin(c3), .sum(sum[15:12]), .cout(cout));
+Carry_Look_Ahead_8bit CLA1(.A(A[7:0]),   .B(B[7:0]),   .Cin(Cin), .S(S[7:0]),   .Cout(C1));
+Carry_Look_Ahead_8bit CLA2(.A(A[15:8]),  .B(B[15:8]),  .Cin(C1),  .S(S[15:8]),  .Cout(C2));
+Carry_Look_Ahead_8bit CLA3(.A(A[23:16]), .B(B[23:16]), .Cin(C2),  .S(S[23:16]), .Cout(C3));
+Carry_Look_Ahead_8bit CLA4(.A(A[31:24]), .B(B[31:24]), .Cin(C3),  .S(S[31:24]), .Cout(C4));
+Carry_Look_Ahead_8bit CLA5(.A(A[39:32]), .B(B[39:32]), .Cin(C4),  .S(S[39:32]), .Cout(C5));
+Carry_Look_Ahead_8bit CLA6(.A(A[47:40]), .B(B[47:40]), .Cin(C5),  .S(S[47:40]), .Cout(C6));
+Carry_Look_Ahead_8bit CLA7(.A(A[55:48]), .B(B[55:48]), .Cin(C6),  .S(S[55:48]), .Cout(C7));
+Carry_Look_Ahead_8bit CLA8(.A(A[63:56]), .B(B[63:56]), .Cin(C7),  .S(S[63:56]), .Cout(Cout));
 
 endmodule
 
-////////////////////////////////////////////////////////
-//4-bit Carry Look Ahead Adder 
-////////////////////////////////////////////////////////
+//8-bit Carry Look Ahead Adder 
 
-module carry_look_ahead_4bit(a,b, cin, sum,cout);
-input [3:0] a,b;
-input cin;
-output [3:0] sum;
-output cout;
+module Carry_Look_Ahead_8bit(
+	input	[7:0]	A, B,
+	input		Cin,
+	output	[7:0]	S,
+	output		Cout
+);
 
-wire [3:0] p,g,c;
+	wire	[7:0]	C;
+	wire	[7:0]	P, G;
 
-assign p=a^b;//propagate
-assign g=a&b; //generate
+assign	P = A ^ B; // Propagate fomula
+assign	G = A & B; // Generate fomula
 
-//carry=gi + Pi.ci
 
-assign c[0]=cin;
-assign c[1]= g[0]|(p[0]&c[0]);
-assign c[2]= g[1] | (p[1]&g[0]) | p[1]&p[0]&c[0];
-assign c[3]= g[2] | (p[2]&g[1]) | p[2]&p[1]&g[0] | p[2]&p[1]&p[0]&c[0];
-assign cout= g[3] | (p[3]&g[2]) | p[3]&p[2]&g[1] | p[3]&p[2]&p[1]&g[0] | p[3]&p[2]&p[1]&p[0]&c[0];
-assign sum=p^c;
+//C(i+1) = G(i) + P(i)C(i)
+assign C[0] = Cin;
+assign C[1] = G[0] | (P[0]&C[0]);
+assign C[2] = G[1] | P[1]&G[0] | P[1]&P[0]&C[0];
+assign C[3] = G[2] | P[2]&G[1] | P[2]&P[1]&G[0] | P[2]&P[1]&P[0]&C[0];
+assign C[4] = G[3] | P[3]&G[2] | P[3]&P[2]&G[1] | P[3]&P[2]&P[1]&G[0] | P[3]&P[2]&P[1]&P[0]&C[0];
+assign C[5] = G[4] | P[4]&G[3] | P[4]&P[3]&G[2] | P[4]&P[3]&P[2]&G[1] | P[4]&P[3]&P[2]&P[1]&G[0] | P[4]&P[3]&P[2]&P[1]&P[0]&C[0];
+assign C[6] = G[5] | P[5]&G[4] | P[5]&P[4]&G[3] | P[5]&P[4]&P[3]&G[2] | P[5]&P[4]&P[3]&P[2]&G[1] | P[5]&P[4]&P[3]&P[2]&P[1]&G[0] | P[5]&P[4]&P[3]&P[2]&P[1]&P[0]&C[0];
+assign C[7] = G[6] | P[6]&G[5] | P[6]&P[5]&G[4] | P[6]&P[5]&P[4]&G[3] | P[6]&P[5]&P[4]&P[3]&G[2] | P[6]&P[5]&P[4]&P[3]&P[2]&G[1] | P[6]&P[5]&P[4]&P[3]&P[2]&P[1]&G[0]
+		   | P[6]&P[5]&P[4]&P[3]&P[2]&P[1]&P[0]&C[0];
+assign Cout = G[7] | P[7]&G[6] | P[7]&P[6]&G[5] | P[7]&P[6]&P[5]&G[4] | P[7]&P[6]&P[5]&P[4]&G[3] | P[7]&P[6]&P[5]&P[4]&P[3]&G[2] | P[7]&P[6]&P[5]&P[4]&P[3]&P[2]&G[1]
+		   | P[7]&P[6]&P[5]&P[4]&P[3]&P[2]&P[1]&G[0] | P[7]&P[6]&P[5]&P[4]&P[3]&P[2]&P[1]&P[0]&C[0];
+assign S = P ^ C;
 
 
 endmodule
 
 ////Testbench
-module carry_look_ahead_16bit_tb;
-reg [15:0] a,b;
-reg cin;
-wire [15:0] sum;
-wire cout;
+module TB;
+	reg	[63:0]	A, B;
+	reg		Cin;
+	wire	[63:0]	S;
+	wire		Cout;
 
-  carry_look_ahead_16bit uut(.a(a), .b(b),.cin(cin),.sum(sum),.cout(cout));
+Carry_Look_Ahead_64bit UUT(.A(A), .B(B), .Cin(Cin), .S(S), .Cout(Cout));
 
 initial begin
-  a=0; b=0; cin=0;
-  #10 a=16'd0; b=16'd0; cin=1'd1;
-  #10 a=16'd14; b=16'd1; cin=1'd1;
-  #10 a=16'd5; b=16'd0; cin=1'd0;
-  #10 a=16'd999; b=16'd0; cin=1'd1;
+
+	A = 64'b00000000_00000000_00000000_00000000_00000000_00000000_00000000_00000000;
+	B = 64'b00000000_00000000_00000000_00000000_00000000_00000000_00000000_00000000;
+	Cin = 1'b0;
+	#10
+
+	A = 64'b00000000_00000000_00000000_00000000_00000000_00000000_00000000_00000001;
+	B = 64'b00000000_00000000_00000000_00000000_00000000_00000000_00000000_00000000;
+	Cin = 1'b0;
+	#10
+	
+	A = 64'b00000000_00000000_00000000_00000000_00011000_11110000_00000000_10000000;
+	B = 64'b00000000_00000000_00000000_00000000_11110000_10000000_00000001_00000000;
+	Cin = 1'b0;
+	#10
+
+	A = 64'b11111000_00000000_00000000_00000000_00000000_00000000_00000000_00000000;
+	B = 64'b00111111_00000000_00000000_00000000_00000000_00000000_00000000_00000000;
+	Cin = 1'b0;
+	
 end
 
-initial
-  $monitor( "A=%d, B=%d, Cin= %d, Sum=%d, Cout=%d", a,b,cin,sum,cout);
+initial begin
+
+	$display("A	|	B	|	Out");
+	$monitor("%b	|	%b	|	%b",	A, B, S);
+
+end
+
+initial begin
+
+	$dumpfile("CLA.vcd");
+	$dumpvars;
+	#60
+	$finish;
+
+end
+
 endmodule
