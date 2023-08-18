@@ -1,0 +1,62 @@
+$date
+	Fri Aug 18 15:06:29 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb $end
+$var wire 1 ! QBAR $end
+$var wire 1 " Q $end
+$var reg 1 # RST $end
+$var reg 1 $ SET $end
+$scope module Latch1 $end
+$var wire 1 " q $end
+$var wire 1 ! qbar $end
+$var wire 1 # reset $end
+$var wire 1 $ set $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0$
+0#
+x"
+x!
+$end
+#1
+1!
+1"
+#5
+1#
+#6
+0"
+#10
+0#
+1$
+#11
+1"
+#12
+0!
+#15
+0$
+0#
+#16
+1!
+#20
+1#
+#21
+0"
+#25
+0#
+1$
+#26
+1"
+#27
+0!
+#30
+1#
+#40
