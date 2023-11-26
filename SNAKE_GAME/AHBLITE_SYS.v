@@ -100,12 +100,12 @@ wire 			HMASTLOCK;
 wire [3:0] 		HPROT;
 wire [2:0] 		HSIZE;
 //Transfer Response & Read Data Signals
-wire [31:0] 	HRDATA;
+wire [31:0] 		HRDATA;
 wire 			HRESP;
 wire 			HREADY;
 
 //SELECT SIGNALS
-wire [3:0] 		MUX_SEL;
+wire [3:0] 			MUX_SEL;
 
 wire 				HSEL_MEM;
 wire 				HSEL_VGA;
@@ -171,6 +171,7 @@ GLOBAL BUFG_CLK (
 // Reset synchronizer
 reg  [4:0]     reset_sync_reg;
 assign lockup_reset_req = 1'b0;
+
 always @(posedge fclk or negedge reset_n)
 begin
     if (!reset_n)
